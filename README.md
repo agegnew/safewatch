@@ -22,22 +22,18 @@ While this MVP is limited to fire detection, it has the potential to be expanded
    git clone https://github.com/your-repo/emergency-detection.git
    ```
 
-2. Clone the submodules:
-   ```bash
-   git submodule update --init --recursive
-   ```
 
-3. Navigate to the repository directory:
+2. Navigate to the repository directory:
    ```bash
    cd emergency-detection
    ```
 
-4. Install the required dependencies:
+3. Clone the submodules:
    ```bash
-   pip install -r requirements.txt
+   git submodule update --init --recursive
    ```
 
-5. Use the commands listed below to execute the desired functionality.
+4. Use the commands listed below to execute the desired functionality. install any modules that is not installed on your machine if there is any error please.
 
 ---
 
