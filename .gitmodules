@@ -1,0 +1,6 @@
+[submodule "AIMODELS/firedetection"]
+	path = AIMODELS/firedetection
+	url = https://github.com/agegnew/firedetection.git
+[submodule "AIMODELS/YOLOv8-Fire-and-Smoke-Detection"]
+	path = AIMODELS/YOLOv8-Fire-and-Smoke-Detection
+	url = https://github.com/agegnew/firedetection.git

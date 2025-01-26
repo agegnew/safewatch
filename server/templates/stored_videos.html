@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeWatch - Stored Videos</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1C1E26;
+            color: #E8E8E8;
+        }
+
+        header {
+            background: #2D2F3A;
+            color: #FFD700;
+            text-align: center;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #2D2F3A;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border: 2px dashed #FFD700;
+            border-radius: 10px;
+            background: #1C1E26;
+        }
+
+        input[type="file"] {
+            padding: 0.5rem;
+            border: none;
+            color: #FFD700;
+            background: #292B35;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button {
+            background: #FFD700;
+            color: #292B35;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        button:hover {
+            background: #E5C700;
+            transform: translateY(-2px);
+        }
+
+        #video-player img {
+            border: 1px solid #E8E8E8;
+            border-radius: 10px;
+            max-width: 100%;
+            display: block;
+            margin: 1rem auto;
+        }
+
+        ul#video-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul#video-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1C1E26;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #FFD700;
+            border-radius: 10px;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        ul#video-list li:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.5);
+        }
+
+        ul#video-list a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #FFD700;
+        }
+
+        ul#video-list .status {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        ul#video-list .detected {
+            background: #8B0000;
+            color: #FFD700;
+        }
+
+        ul#video-list .undetected {
+            background: #292B35;
+            color: #FFD700;
+        }
+
+        footer {
+            text-align: center;
+            background: #292B35;
+            color: #FFD700;
+            padding: 1rem;
+            border-radius: 0 0 15px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>SafeWatch - Stored Videos</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Upload a Video</h2>
+            <form id="upload-form">
+                <input type="file" id="video" name="video" accept="video/*" required>
+                <button type="submit">Upload</button>
+            </form>
+        </section>
+        <section>
+            <h2>Live Processing</h2>
+            <div id="video-player" style="display: none;">
+                <h3 style="text-align: center; color: #FFD700;">Video Processing</h3>
+                <img id="processed-stream" />
+            </div>
+        </section>
+        <section>
+            <h2>Stored Videos</h2>
+            <ul id="video-list"></ul>
+        </section>
+    </main>
+    <footer>
+        &copy; 2025 SafeWatch | All Rights Reserved
+    </footer>
+    <script>
+        document.getElementById("upload-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const fileInput = document.getElementById("video");
+            const formData = new FormData();
+            formData.append("video", fileInput.files[0]);
+
+            fetch("/", {
+                method: "POST",
+                body: formData,
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    const videoPlayer = document.getElementById("video-player");
+                    const processedStream = document.getElementById("processed-stream");
+                    videoPlayer.style.display = "block";
+                    processedStream.src = `/process/${data.filename}`;
+
+                    const videoList = document.getElementById("video-list");
+                    const fireDetected = Math.random() > 0.5 ? "detected" : "undetected"; // Random example
+                    const statusText = fireDetected === "detected" ? "Fire Detected" : "No Fire";
+
+                    videoList.innerHTML += `
+                        <li>
+                            <a href="/uploads/${data.filename}" target="_blank">${data.filename}</a>
+                            <span class="status ${fireDetected}">${statusText}</span>
+                        </li>
+                    `;
+                })
+                .catch((error) => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>
