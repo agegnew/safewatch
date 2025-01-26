@@ -14,14 +14,14 @@ While this MVP is limited to fire detection, it has the potential to be expanded
 - **OpenAI Library Version**: 0.28.0
 
 ---
+## Bash Executable Commands
 
+### 1. **Detect Fire from Video and Display Result**
 
 ```markdown
 
 
-## Bash Executable Commands
 
-### 1. **Detect Fire from Video and Display Result**
 ```bash
 py test2.py
 ```
