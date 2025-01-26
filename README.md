@@ -1,4 +1,3 @@
-Here's the refined README based on your details:
 
 ```markdown
 # Emergency Detection System MVP
@@ -85,6 +84,3 @@ The current system is focused solely on fire detection. In the future, we plan t
 4. Follow the on-screen instructions for interaction.
 
 Stay tuned for updates as we expand the system's capabilities!
-```
-
-This version includes concise descriptions for each script and aligns closely with the instructions you provided. Let me know if you need further adjustments!
