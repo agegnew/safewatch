@@ -1,117 +1,404 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Stored Videos - SafeWatch</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #1C1E26;-->
+<!--            color: #E8E8E8;-->
+<!--        }-->
+
+<!--        header {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            background: #2D2F3A;-->
+<!--            color: #FFD700;-->
+<!--            padding: 1rem 2rem;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);-->
+<!--        }-->
+
+<!--        header .logo {-->
+<!--            font-size: 1.5rem;-->
+<!--            font-weight: bold;-->
+<!--            color: #FFD700;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            padding: 2rem;-->
+<!--        }-->
+
+<!--        .video-list {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));-->
+<!--            gap: 1.5rem;-->
+<!--        }-->
+
+<!--        .video-item {-->
+<!--            background: #2D2F3A;-->
+<!--            padding: 1rem;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .video-item h3 {-->
+<!--            color: #FFD700;-->
+<!--        }-->
+
+<!--        .upload-section {-->
+<!--            margin-top: 2rem;-->
+<!--            padding: 1.5rem;-->
+<!--            background: #292B35;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);-->
+<!--        }-->
+
+<!--        .upload-section input {-->
+<!--            margin-top: 1rem;-->
+<!--            padding: 0.5rem;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        footer {-->
+<!--            text-align: center;-->
+<!--            background: #292B35;-->
+<!--            color: #FFD700;-->
+<!--            padding: 1rem 0;-->
+<!--            margin-top: 2rem;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <header>-->
+<!--        <div class="logo">SafeWatch</div>-->
+<!--    </header>-->
+
+<!--    <div class="container">-->
+<!--        <h1>Stored Videos</h1>-->
+
+<!--        <div class="video-list">-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 1</h3>-->
+<!--                <p>Description of Incident 1...</p>-->
+<!--            </div>-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 2</h3>-->
+<!--                <p>Description of Incident 2...</p>-->
+<!--            </div>-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 3</h3>-->
+<!--                <p>Description of Incident 3...</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="upload-section">-->
+<!--            <h2>Upload New Video</h2>-->
+<!--            <form action="{{ url_for('get_stored_videos') }}" method="post" enctype="multipart/form-data">-->
+<!--                <label for="video">Choose a video file:</label>-->
+<!--                <input type="file" id="video" name="video" accept="video/*" required>-->
+<!--                <button type="submit" style="margin-top: 1rem; padding: 0.5rem; border: none; background: #FFD700; color: #292B35; border-radius: 5px; cursor: pointer;">Upload</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <footer>-->
+<!--        <p>&copy; 2025 SafeWatch. All rights reserved.</p>-->
+<!--    </footer>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Stored Videos - SafeWatch</title>-->
+<!--    <style>-->
+<!--        /* Add your styles here */-->
+<!--    </style>-->
+<!--    <script>-->
+<!--        // Функция для проверки состояния тревоги-->
+<!--        function checkAlertStatus() {-->
+<!--            fetch("/alert-status")-->
+<!--                .then(response => response.json())-->
+<!--                .then(data => {-->
+<!--                    if (data.alert_triggered) {-->
+<!--                        document.getElementById("alert").style.display = "block";-->
+<!--                    } else {-->
+<!--                        document.getElementById("alert").style.display = "none";-->
+<!--                    }-->
+<!--                });-->
+<!--        }-->
+
+<!--        // Периодически проверяем статус тревоги-->
+<!--        setInterval(checkAlertStatus, 2000); // каждые 2 секунды-->
+<!--    </script>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <header>-->
+<!--        <div class="logo">SafeWatch</div>-->
+<!--    </header>-->
+
+<!--    <div class="container">-->
+<!--        <h1>Stored Videos</h1>-->
+
+<!--        <div class="video-list">-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 1</h3>-->
+<!--                <p>Description of Incident 1...</p>-->
+<!--            </div>-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 2</h3>-->
+<!--                <p>Description of Incident 2...</p>-->
+<!--            </div>-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 3</h3>-->
+<!--                <p>Description of Incident 3...</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="upload-section">-->
+<!--            <h2>Upload New Video</h2>-->
+<!--            <form action="/stored-videos" method="post" enctype="multipart/form-data">-->
+<!--                <label for="video">Choose a video file:</label>-->
+<!--                <input type="file" id="video" name="video" accept="video/*" required>-->
+<!--                <button type="submit">Upload</button>-->
+<!--            </form>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Fire Alert Notification &ndash;&gt;-->
+<!--        <div id="alert" style="display: none; background: red; color: white; padding: 20px; text-align: center;">-->
+<!--            FIRE ALERT! Fire detected in video.-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <footer>-->
+<!--        <p>&copy; 2025 SafeWatch. All rights reserved.</p>-->
+<!--    </footer>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Stored Videos - SafeWatch</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #1C1E26;-->
+<!--            color: #E8E8E8;-->
+<!--        }-->
+
+<!--        header {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            background: #2D2F3A;-->
+<!--            color: #FFD700;-->
+<!--            padding: 1rem 2rem;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);-->
+<!--        }-->
+
+<!--        header .logo {-->
+<!--            font-size: 1.5rem;-->
+<!--            font-weight: bold;-->
+<!--            color: #FFD700;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            padding: 2rem;-->
+<!--        }-->
+
+<!--        .video-list {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));-->
+<!--            gap: 1.5rem;-->
+<!--        }-->
+
+<!--        .video-item {-->
+<!--            background: #2D2F3A;-->
+<!--            padding: 1rem;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .video-item h3 {-->
+<!--            color: #FFD700;-->
+<!--        }-->
+
+<!--        .upload-section {-->
+<!--            margin-top: 2rem;-->
+<!--            padding: 1.5rem;-->
+<!--            background: #292B35;-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);-->
+<!--        }-->
+
+<!--        .upload-section input {-->
+<!--            margin-top: 1rem;-->
+<!--            padding: 0.5rem;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        footer {-->
+<!--            text-align: center;-->
+<!--            background: #292B35;-->
+<!--            color: #FFD700;-->
+<!--            padding: 1rem 0;-->
+<!--            margin-top: 2rem;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        /* Style for alert messages */-->
+<!--        .alert {-->
+<!--            padding: 10px;-->
+<!--            margin: 10px 0;-->
+<!--            border-radius: 5px;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+
+<!--        .alert-danger {-->
+<!--            background-color: #f8d7da;-->
+<!--            color: #721c24;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <header>-->
+<!--        <div class="logo">SafeWatch</div>-->
+<!--    </header>-->
+
+<!--    <div class="container">-->
+<!--        <h1>Stored Videos</h1>-->
+
+<!--        &lt;!&ndash; Display Flash Messages &ndash;&gt;-->
+<!--        {% with messages = get_flashed_messages() %}-->
+<!--            {% if messages %}-->
+<!--                <ul>-->
+<!--                    {% for message in messages %}-->
+<!--                        <li class="alert alert-danger">{{ message }}</li>-->
+<!--                    {% endfor %}-->
+<!--                </ul>-->
+<!--            {% endif %}-->
+<!--        {% endwith %}-->
+
+<!--        <div class="video-list">-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 1</h3>-->
+<!--                <p>Description of Incident 1...</p>-->
+<!--            </div>-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 2</h3>-->
+<!--                <p>Description of Incident 2...</p>-->
+<!--            </div>-->
+<!--            <div class="video-item">-->
+<!--                <h3>Incident 3</h3>-->
+<!--                <p>Description of Incident 3...</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="upload-section">-->
+<!--            <h2>Upload New Video</h2>-->
+<!--            <form action="/" method="post" enctype="multipart/form-data">-->
+<!--                <label for="video">Choose a video file:</label>-->
+<!--                <input type="file" id="video" name="video" accept="video/*" required>-->
+<!--                <button type="submit" style="margin-top: 1rem; padding: 0.5rem; border: none; background: #FFD700; color: #292B35; border-radius: 5px; cursor: pointer;">Upload</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <footer>-->
+<!--        <p>&copy; 2025 SafeWatch. All rights reserved.</p>-->
+<!--    </footer>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stored Videos - SafeWatch</title>
+    <title>Fire Detection - SafeWatch</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #1C1E26;
             color: #E8E8E8;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #2D2F3A;
-            color: #FFD700;
-            padding: 1rem 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #FFD700;
         }
 
         .container {
             padding: 2rem;
         }
 
-        .video-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .video-item {
-            background: #2D2F3A;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        .video-item h3 {
-            color: #FFD700;
-        }
-
-        .upload-section {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            background: #292B35;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .upload-section input {
-            margin-top: 1rem;
-            padding: 0.5rem;
-            border: none;
+        .flash-message {
+            padding: 10px;
+            margin-bottom: 20px;
             border-radius: 5px;
-            width: 100%;
+            color: #fff;
         }
 
-        footer {
-            text-align: center;
-            background: #292B35;
-            color: #FFD700;
-            padding: 1rem 0;
-            margin-top: 2rem;
-            font-weight: bold;
-        }
+        .danger { background-color: red; }
+        .info { background-color: blue; }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">SafeWatch</div>
-    </header>
-
     <div class="container">
-        <h1>Stored Videos</h1>
+        <h1>Upload Video for Fire Detection</h1>
 
-        <div class="video-list">
-            <div class="video-item">
-                <h3>Incident 1</h3>
-                <p>Description of Incident 1...</p>
-            </div>
-            <div class="video-item">
-                <h3>Incident 2</h3>
-                <p>Description of Incident 2...</p>
-            </div>
-            <div class="video-item">
-                <h3>Incident 3</h3>
-                <p>Description of Incident 3...</p>
-            </div>
-        </div>
+        <!-- Flash messages -->
+        <div id="flash-messages"></div>
 
-        <div class="upload-section">
-            <h2>Upload New Video</h2>
-            <form action="{{ url_for('get_stored_videos') }}" method="post" enctype="multipart/form-data">
-                <label for="video">Choose a video file:</label>
-                <input type="file" id="video" name="video" accept="video/*" required>
-                <button type="submit" style="margin-top: 1rem; padding: 0.5rem; border: none; background: #FFD700; color: #292B35; border-radius: 5px; cursor: pointer;">Upload</button>
-            </form>
-        </div>
+        <form id="upload-form" method="POST" enctype="multipart/form-data">
+            <label for="video">Choose a video file:</label>
+            <input type="file" name="video" id="video" accept="video/*">
+            <button type="submit">Upload Video</button>
+        </form>
     </div>
 
-    <footer>
-        <p>&copy; 2025 SafeWatch. All rights reserved.</p>
-    </footer>
+    <script>
+        $(document).ready(function(){
+            // Handle form submission via AJAX
+            $('#upload-form').on('submit', function(e){
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: '/',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        // Flash messages
+                        if(response.result == 'fire_detected') {
+                            $('#flash-messages').html('<div class="flash-message danger">🔥 FIRE HAZARD DETECTED! 🚨</div>');
+                        } else if(response.result == 'no_fire_detected') {
+                            $('#flash-messages').html('<div class="flash-message info">No fire detected in this video.</div>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
