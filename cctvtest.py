@@ -12,7 +12,6 @@ openai.api_base = "https://api.sambanova.ai/v1"
 
 # YOLO model setup
 model_path = "./AIMODELS/YOLOv8-Fire-and-Smoke-Detection/runs/detect/train/weights/best.pt"
-video_source = "./AIMODELS/YOLOv8-Fire-and-Smoke-Detection/fire.mp4"
 detection_threshold = 0.5
 required_detections = 3  # Fire must be detected for at least 3 frames
 consecutive_count = 0
@@ -60,12 +59,12 @@ def show_notification():
 
     window.mainloop()
 
-# Play video and process detection
-def play_video_with_detection(video: str):
+# Process live camera feed
+def process_cctv_feed():
     global consecutive_count, alert_triggered
-    cap = cv2.VideoCapture(video)
+    cap = cv2.VideoCapture(0)  # Open the laptop camera
     if not cap.isOpened():
-        print("Error: Cannot open video source.")
+        print("Error: Cannot access camera.")
         return
 
     frame_count = 0
@@ -74,9 +73,8 @@ def play_video_with_detection(video: str):
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
-            print("Restarting video...")
-            cap.set(cv2.CAP_PROP_POS_FRAMES, 0)  # Restart video
-            continue
+            print("Error: Unable to read frame from camera.")
+            break
 
         frame_count += 1
         print(f"Processing frame {frame_count}...")
@@ -110,24 +108,29 @@ def play_video_with_detection(video: str):
             cv2.imwrite(image_path, last_frame)
             response = send_to_sambanova(image_path)
 
-            if "hazard: \"fire\"" in response.lower() and "level: " in response.lower():
-                alert_triggered = True
-                notification_thread = threading.Thread(target=show_notification, daemon=True)
-                notification_thread.start()
+            if "hazard: \"fire\"" in response.lower():
+                if "level: \"false alarm\"" in response.lower():
+                    print("False alarm detected. No alert triggered.")
+                else:
+                    alert_triggered = True
+                    notification_thread = threading.Thread(target=show_notification, daemon=True)
+                    notification_thread.start()
             else:
-                print("False alarm or undetermined risk level. Continuing detection.")
+                print("Undetermined risk level or no fire hazard. Continuing detection.")
 
         # Overlay red border if alert is triggered
         if alert_triggered:
             frame = cv2.rectangle(frame, (0, 0), (frame.shape[1], frame.shape[0]), (0, 0, 255), 50)
 
-        cv2.imshow("Fire Detection - Video Feed", frame)
+        cv2.imshow("Fire Detection - CCTV Feed", frame)
 
         if cv2.waitKey(30) & 0xFF == ord("q"):  # Press 'q' to stop
             break
 
     cap.release()
     cv2.destroyAllWindows()
+
+
 
 # Send image to SambaNova
 def send_to_sambanova(image_path):
@@ -169,4 +172,4 @@ def send_to_sambanova(image_path):
 
 # Main execution
 if __name__ == "__main__":
-    play_video_with_detection(video_source)
+    process_cctv_feed()
