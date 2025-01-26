@@ -102,7 +102,7 @@
 
         <div class="upload-section">
             <h2>Upload New Video</h2>
-            <form action="upload" method="post" enctype="multipart/form-data">
+            <form action="{{ url_for('get_stored_videos') }}" method="post" enctype="multipart/form-data">
                 <label for="video">Choose a video file:</label>
                 <input type="file" id="video" name="video" accept="video/*" required>
                 <button type="submit" style="margin-top: 1rem; padding: 0.5rem; border: none; background: #FFD700; color: #292B35; border-radius: 5px; cursor: pointer;">Upload</button>

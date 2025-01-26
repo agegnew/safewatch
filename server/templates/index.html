@@ -191,7 +191,7 @@
 
     <nav>
         <a href="#">Dashboard</a>
-        <a href="stored-videos.html">Stored Videos</a>
+        <a href="stored_videos.html">Stored Videos</a>
         <a href="live-feed.html">Live Feed</a>
         <a href="emergency-contacts.html">Emergency Contacts</a>
     </nav>
@@ -212,7 +212,7 @@
 
         <section id="stored-videos">
             <h2>Stored Videos</h2>
-            <p><a href="stored-videos.html">Click here to access stored videos</a></p>
+            <p><a href="{{ url_for('get_stored_videos') }}">Click here to access stored videos</a></p>
         </section>
 
         <section id="live-feed">

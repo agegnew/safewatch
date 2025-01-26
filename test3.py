@@ -64,9 +64,9 @@ def show_notification():
 
 
 # Play video and process detection
-def play_video_with_detection():
+def play_video_with_detection(video: str):
     global consecutive_count, alert_triggered
-    cap = cv2.VideoCapture(video_source)
+    cap = cv2.VideoCapture(video)
     if not cap.isOpened():
         print("Error: Cannot open video source.")
         return
