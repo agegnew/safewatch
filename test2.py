@@ -5,7 +5,11 @@ from ultralytics import YOLO
 import cv2
 
 # Set up OpenAI API key and base URL
+<<<<<<< HEAD
 openai.api_key = "7c328a65-098f-49cb-9ac5-54139bcb7288"
+=======
+openai.api_key = "5388e790-3042-4747-9b3e-116c228e60c8"
+>>>>>>> b7ac1de5b0d777f07bcd6bba7035cceea1d2ec2a
 openai.api_base = "https://api.sambanova.ai/v1"
 
 # YOLO model setup

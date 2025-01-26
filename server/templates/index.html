@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeWatch Dashboard</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1C1E26;
+            color: #E8E8E8;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2D2F3A;
+            color: #FFD700;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        header .notifications {
+            position: relative;
+            background: #FFD700;
+            color: #2D2F3A;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        header .notifications::after {
+            content: "5";
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background: #FF0000;
+            color: #FFFFFF;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 50%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            background: #292B35;
+            padding: 1rem 0;
+        }
+
+        nav a {
+            color: #FFD700;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: #FFD700;
+            color: #292B35;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: #2D2F3A;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .card h2 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        .card-danger {
+            background: #8B0000;
+        }
+
+        .card-danger h2 {
+            color: #FFD700;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .tabs button {
+            background: #FFD700;
+            color: #292B35;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .tabs button:hover {
+            background: #E5C700;
+        }
+
+        .tabs a {
+            background: #FFD700;
+            color: #292B35;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .tabs a:hover {
+            background: #E5C700;
+        }
+
+        .emergency-contacts {
+            margin-top: 2rem;
+            background: #2D2F3A;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .emergency-contacts ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .emergency-contacts li {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .emergency-contacts li a {
+            text-decoration: none;
+            color: #FFD700;
+            margin-left: 0.5rem;
+        }
+
+        .emergency-contacts li svg {
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            background: #292B35;
+            color: #FFD700;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">SafeWatch</div>
+        <div class="notifications">Notifications</div>
+    </header>
+
+    <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#stored-videos">Stored Videos</a>
+        <a href="#live-feed">Live Feed</a>
+        <a href="#emergency-contacts">Emergency Contacts</a>
+    </nav>
+
+    <div class="container">
+        <section id="dashboard" class="dashboard">
+            <div class="card card-danger">
+                <h2>Active Fire Incidents</h2>
+                <p>Number of Active Incidents: <strong>5</strong></p>
+            </div>
+            <div class="card">
+                <h2>Closed Fire Incidents</h2>
+                <p>Number of Closed Incidents: <strong>20</strong></p>
+            </div>
+        </section>
+
+        <section id="stored-videos">
+            <h2>Stored Videos</h2>
+            <p><a href="#">Click here to access stored videos</a></p>
+        </section>
+
+        <section id="live-feed">
+            <h2>Live Feed</h2>
+            <p><a href="#">Click here to monitor live feed</a></p>
+        </section>
+
+        <section id="emergency-contacts" class="emergency-contacts">
+            <h2>Emergency Contacts</h2>
+            <ul>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22 17.002c-3.91 0-7.842-1.698-10.485-4.342C8.872 9.94 7.179 6.007 7.179 2.096c0-1.073-.901-1.95-2.014-1.95H3.002C1.899.145.998 1.021.998 2.096c0 4.516 1.86 8.939 5.226 12.306C9.592 18.767 13.995 20.628 18.512 20.628c1.073 0 1.951-.901 1.951-2.014V18.02c0-1.073-.878-2.018-1.951-2.018z"></path></svg> <a href="tel:1234567890">Fire Department: 123-456-7890</a></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22 17.002c-3.91 0-7.842-1.698-10.485-4.342C8.872 9.94 7.179 6.007 7.179 2.096c0-1.073-.901-1.95-2.014-1.95H3.002C1.899.145.998 1.021.998 2.096c0 4.516 1.86 8.939 5.226 12.306C9.592 18.767 13.995 20.628 18.512 20.628c1.073 0 1.951-.901 1.951-2.014V18.02c0-1.073-.878-2.018-1.951-2.018z"></path></svg> <a href="tel:1234567891">Police: 123-456-7891</a></li>
+                <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M22 17.002c-3.91 0-7.842-1.698-10.485-4.342C8.872 9.94 7.179 6.007 7.179 2.096c0-1.073-.901-1.95-2.014-1.95H3.002C1.899.145.998 1.021.998 2.096c0 4.516 1.86 8.939 5.226 12.306C9.592 18.767 13.995 20.628 18.512 20.628c1.073 0 1.951-.901 1.951-2.014V18.02c0-1.073-.878-2.018-1.951-2.018z"></path></svg> <a href="tel:1234567892">Ambulance: 123-456-7892</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 SafeWatch. All rights reserved.</p>
+    </footer>
+</body>
+</html>
