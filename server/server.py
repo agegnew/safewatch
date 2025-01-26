@@ -1,11 +1,11 @@
 import flask
 
+app = flask.Flask(__name__)
 
-class Server:
-    def __init__(self):
-        self.flask_app = flask.Flask(__name__)
+@app.route("/")
+def get_home_page():
+    return flask.render_template("index.html")
 
-    def start(self):
-        self.flask_app.run(host='0.0.0.0', port=911)
 
-    def send_request(self):
+
+app.run(host="0.0.0.0", port=5000)
