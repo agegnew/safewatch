@@ -1,5 +1,3 @@
-
-```markdown
 # Emergency Detection System MVP
 
 ## Overview
@@ -16,6 +14,10 @@ While this MVP is limited to fire detection, it has the potential to be expanded
 - **OpenAI Library Version**: 0.28.0
 
 ---
+
+
+```markdown
+
 
 ## Bash Executable Commands
 
