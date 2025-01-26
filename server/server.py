@@ -353,6 +353,20 @@ def get_home_page():
 def get_stored_videos():
     return render_template("stored_videos.html")
 
+
+
+@app.route("/live-feed")
+def get_live_feed():
+    return render_template("live-feed.html")
+
+@app.route("/emergency-counts")
+def get_emergency_counts():
+        return render_template("emergency-counts.html")
+
+
+
+
+
 # Helper function to check video format
 def check_video_format(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
