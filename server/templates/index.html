@@ -191,9 +191,9 @@
 
     <nav>
         <a href="#">Dashboard</a>
-        <a href="stored_videos.html">Stored Videos</a>
-        <a href="live-feed.html">Live Feed</a>
-        <a href="emergency-contacts.html">Emergency Contacts</a>
+        <a href="{{ url_for('get_stored_videos') }}">Stored Videos</a>
+        <a href="{{ url_for('get_live_feed') }}">Live Feed</a>
+        <a href="#">Emergency Contacts</a>
     </nav>
     
     
@@ -201,11 +201,11 @@
     <div class="container">
         <section id="dashboard" class="dashboard">
             <div class="card card-danger">
-                <h2><a href="active-emergencies.html" style="color: #FFD700; text-decoration: none;">Active Fire Incidents</a></h2>
+                <h2><a href="{{ url_for('get_emergency_counts') }}" style="color: #FFD700; text-decoration: none;">Active Fire Incidents</a></h2>
                 <p>Number of Active Incidents: <strong>5</strong></p>
             </div>
             <div class="card">
-                <h2><a href="closed-emergencies.html" style="color: #FFD700; text-decoration: none;">Closed Fire Incidents</a></h2>
+                <h2><a href="{{ url_for('get_emergency_counts') }}" style="color: #FFD700; text-decoration: none;">Closed Fire Incidents</a></h2>
                 <p>Number of Closed Incidents: <strong>20</strong></p>
             </div>
         </section>
@@ -217,7 +217,7 @@
 
         <section id="live-feed">
             <h2>Live Feed</h2>
-            <p><a href="live-feed.html">Click here to monitor live feed</a></p>
+            <p><a href="{{ url_for('get_live_feed') }}">Click here to monitor live feed</a></p>
         </section>
 
         <section id="emergency-contacts" class="emergency-contacts">

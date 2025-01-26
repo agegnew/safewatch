@@ -44,6 +44,14 @@ def get_stored_videos():
 # def get_stored_video(video_id):
 #     test3.play_video_with_detection()
 
+@app.route("/live-feed")
+def get_live_feed():
+    return flask.render_template("live-feed.html")
+
+@app.route("/emergency-counts")
+def get_emergency_counts():
+    return flask.render_template("emergency-counts.html")
+
 
 
 app.run(host="0.0.0.0", port=5000)
