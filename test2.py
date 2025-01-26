@@ -95,7 +95,7 @@ def send_to_sambanova(image_path):
         {
             "role": "user",
             "content": [
-                {"type": "text", "text": "This is a fire-detected image. Please evaluate the accuracy of this detection and assess how dangerous it is. Respond in the format:\n\nhazard: \"fire\"\nlevel: \"<risk-level>\" (e.g., false alarm, minor fire, major fire)."},
+                {"type": "text", "text": "This is a fire-detected image. Please evaluate the accuracy of this detection and assess how dangerous it is. Respond in the format:\n\nhazard: \"fire\"\nlevel: \"<risk-level>\"\n\"verdict\"YES OR NOT"" (e.g., false alarm, minor fire, major fire)."},
                 {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}},
             ],
         }
@@ -114,8 +114,17 @@ def send_to_sambanova(image_path):
         result = response["choices"][0]["message"]["content"]
         print("SambaNova Response:")
         print(result)
+        parse_result(result)
     except Exception as e:
         print(f"Error occurred while sending to SambaNova: {e}")
+
+def parse_result(str: str) -> str:
+    FIRE = "fire"
+    if "**Hazard:** \"fire" in str:
+        print("fire detected")
+        
+    else:
+        print("fire undetected")
 
 # Main execution
 if __name__ == "__main__":
