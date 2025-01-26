@@ -121,6 +121,38 @@ def get_emergency_counts():
     return render_template("emergency-counts.html")  # Adjust based on your actual implementation
 
 
+@app.route("/live-camera")
+def live_camera_feed():
+    def generate():
+        cap = cv2.VideoCapture(0)  # Use 0 for the default laptop webcam
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            # YOLO model inference
+            results = yolo_model.predict(frame, conf=detection_threshold, verbose=False)
+            for box in results[0].boxes:
+                x1, y1, x2, y2 = map(int, box.xyxy[0])
+                confidence = box.conf[0]
+                cls = results[0].names[int(box.cls[0])]
+
+                if cls == "Fire" and confidence > detection_threshold:
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 0, 255), 3)
+                    cv2.putText(frame, f"{cls} {confidence:.2f}", (x1, y1 - 10),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2)
+
+            _, buffer = cv2.imencode(".jpg", frame)
+            frame_bytes = buffer.tobytes()
+
+            yield (b"--frame\r\n"
+                   b"Content-Type: image/jpeg\r\n\r\n" + frame_bytes + b"\r\n")
+
+        cap.release()
+
+    return Response(generate(), mimetype="multipart/x-mixed-replace; boundary=frame")
+
+
 
 if __name__ == "__main__":
     if not os.path.exists(UPLOAD_FOLDER):
