@@ -19,7 +19,7 @@ While this MVP is limited to fire detection, it has the potential to be expanded
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/your-repo/emergency-detection.git
+   git clone https://github.com/agegnew/safewatch.git
    ```
 
 
