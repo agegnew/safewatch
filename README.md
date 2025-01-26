@@ -25,7 +25,7 @@ While this MVP is limited to fire detection, it has the potential to be expanded
 
 2. Navigate to the repository directory:
    ```bash
-   cd emergency-detection
+   cd <folder name>
    ```
 
 3. Clone the submodules:
