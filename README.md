@@ -14,26 +14,36 @@ While this MVP is limited to fire detection, it has the potential to be expanded
 - **OpenAI Library Version**: 0.28.0
 
 ---
-## Bash Executable Commands
 
-### 1. **Detect Fire from Video and Display Result**
+## How to Use
 
-```markdown
+1. Clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/your-repo/emergency-detection.git
+   ```
 
+2. Clone the submodules:
+   ```bash
+   git submodule update --init --recursive
+   ```
 
+3. Navigate to the repository directory:
+   ```bash
+   cd emergency-detection
+   ```
 
-```bash
-py test2.py
-```
-- **Description**: Analyzes a video file to detect fire occurrences.
-- **Functionality**:
-  - Processes the video.
-  - Sends fire detection results to SambaNova API.
-  - Displays the detection result.
+4. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. Use the commands listed below to execute the desired functionality.
 
 ---
 
-### 2. **Detect Fire with Video Feed and Alerts**
+## Bash Executable Commands
+
+### 1. **Detect Fire with Video Feed and Alerts**
 ```bash
 py test3.py
 ```
@@ -45,7 +55,7 @@ py test3.py
 
 ---
 
-### 3. **Detect Fire Using Laptop Camera**
+### 2. **Detect Fire Using Laptop Camera**
 ```bash
 py cctvtest.py
 ```
@@ -54,6 +64,18 @@ py cctvtest.py
   - Captures live video feed from the laptop camera.
   - Detects fire and sends results to SambaNova API.
   - Shows an alert if the fire detection is accurate.
+
+---
+
+### 3. **Detect Fire from Video and Display Result**
+```bash
+py test2.py
+```
+- **Description**: Analyzes a video file to detect fire occurrences.
+- **Functionality**:
+  - Processes the video.
+  - Sends fire detection results to SambaNova API.
+  - Displays the detection result.
 
 ---
 
@@ -78,11 +100,5 @@ The current system is focused solely on fire detection. In the future, we plan t
 
 ---
 
-## How to Use
-
-1. Clone the repository to your local machine.
-2. Install the required dependencies.
-3. Use the commands listed above to execute the desired functionality.
-4. Follow the on-screen instructions for interaction.
-
 Stay tuned for updates as we expand the system's capabilities!
+
