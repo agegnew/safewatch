@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Counts - SafeWatch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1C1E26;
+            color: #E8E8E8;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #2D2F3A;
+            color: #FFD700;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .container {
+            padding: 2rem;
+        }
+
+        .count-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .count-item {
+            background: #2D2F3A;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .count-item.active {
+            background: #8B0000;
+        }
+
+        .count-item h2 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            background: #292B35;
+            color: #FFD700;
+            padding: 1rem 0;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">SafeWatch</div>
+    </header>
+
+    <div class="container">
+        <h1>Emergency Counts</h1>
+        <p>Details of active and closed emergencies.</p>
+
+        <div class="count-container">
+            <div class="count-item active">
+                <h2>Active Emergencies</h2>
+                <p>Number of Active Incidents: <strong>5</strong></p>
+                <ul>
+                    <li>Incident 1: Fire at location A</li>
+                    <li>Incident 2: Gas leak at location B</li>
+                    <li>Incident 3: Flood at location C</li>
+                    <li>Incident 4: Earthquake impact at location D</li>
+                    <li>Incident 5: Electrical fire at location E</li>
+                </ul>
+            </div>
+            <div class="count-item">
+                <h2>Closed Emergencies</h2>
+                <p>Number of Closed Incidents: <strong>20</strong></p>
+                <ul>
+                    <li>Incident A: Resolved fire at location X</li>
+                    <li>Incident B: Resolved gas leak at location Y</li>
+                    <li>Incident C: Resolved flood at location Z</li>
+                    <li>...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 SafeWatch. All rights reserved.</p>
+    </footer>
+</body>
+</html>
